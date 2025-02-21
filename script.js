@@ -5,16 +5,16 @@ const ulContainer = document.getElementById("todo-items")
 const deleteAllItemsButton = document.getElementById("delete-all-btn")
 const checkedInput = document.getElementById("check-btn")
 
-// #TODO: 
+// #TODO:
 // 1. add change theme button: for dark as well as white mode
 // 2. use localStorage to store it locally
 
 
-addButton.addEventListener('click', () => {
+function addTodoTask() {
     const value = todoData.value.trim();
     console.log(value)
     todoData.value = ""
-    if (value !="" || value) {
+    if (value != "" || value) {
         const modifiedValue = " " + value + " "
         const li = document.createElement('li')
 
@@ -45,7 +45,7 @@ addButton.addEventListener('click', () => {
                 const delElement = document.createElement("del")
                 delElement.style.opacity = 0.5
                 delElement.innerText = modifiedValue
-                
+
                 divContainer.innerHTML = ""
                 divContainer.append(checkboxButton, delElement)
                 console.log("box checked")
@@ -59,7 +59,16 @@ addButton.addEventListener('click', () => {
     } else {
         alert("Enter task")
     }
+}
 
+addButton.addEventListener('click', () => {
+    addTodoTask()
+})
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === "Enter") {
+        addTodoTask()
+    }
 })
 
 deleteAllItemsButton.addEventListener('click', () => {
